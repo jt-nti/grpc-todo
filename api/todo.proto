@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: Apache-2.0
+
+import "google/protobuf/empty.proto";
+
+message Todo {
+  // frequently occurring
+  required string title = 1;
+  optional bool completed = 2;
+
+  // less frequent
+  optional int32 order = 16;
+}
+
+message TodoResponse {
+   repeated Todo todos = 1;
+}
+
+service Todo {
+  rpc GetAllTodos (Empty) returns (TodoResponse) {}
+  rpc CreateTodo (Todo) returns (TodoResponse) {}
+
+  // TODO add...
+  //  - UpdateTodo
+  //  - DeleteTodo
+  //  - DeleteAllTodos
+  //  - MarkTodoCompleted
+  //  - MarkAllTodosCompleted
+}
