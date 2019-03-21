@@ -1,0 +1,29 @@
+{
+  "name": "@jtonline/todo-pb-node",
+  "version": "0.1.0",
+  "description": "Protocol Buffer files and generated JavaScript code for example TODO service",
+  "main": "index.js",
+  "files": [
+    "/api/*.proto",
+    "/lib/*.js"
+  ],
+  "scripts": {
+    "copy-api": "rimraf ./api && mkdirp ./api && cpx \"../api/*.proto\" ./api",
+    "protoc": "npm run copy-api && docker run -v ${INIT_CWD}/api:/defs namely/protoc-all -f todo.proto -l node",
+    "build": "rimraf ./lib && mkdirp ./lib && npm run protoc && cpx \"./api/gen/pb-node/*.js\" ./lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "TODO",
+    "gRPC",
+    "protobuf",
+    "example"
+  ],
+  "author": "James Taylor",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.3"
+  }
+}

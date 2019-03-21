@@ -1,4 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
+syntax = "proto2";
+
+package example.todo;
 
 import "google/protobuf/empty.proto";
 
@@ -15,8 +18,8 @@ message TodoResponse {
    repeated Todo todos = 1;
 }
 
-service Todo {
-  rpc GetAllTodos (Empty) returns (TodoResponse) {}
+service TodoService {
+  rpc GetAllTodos (google.protobuf.Empty) returns (TodoResponse) {}
   rpc CreateTodo (Todo) returns (TodoResponse) {}
 
   // TODO add...
